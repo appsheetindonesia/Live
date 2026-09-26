@@ -1,4 +1,4 @@
-name: Keep Supabase Alive
+name: klinik kita Alive
 
 on:
   schedule:
