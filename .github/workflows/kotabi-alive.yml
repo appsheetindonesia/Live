@@ -1,0 +1,20 @@
+name: Klinik Kita Alive
+
+on:
+  schedule:
+    # Berjalan setiap 1 jam sekali (di menit ke-0)
+    - cron: '0 * * * *'
+  workflow_dispatch: # Memungkinkan untuk di-run secara manual
+
+jobs:
+  ping-supabase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase Database
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL_KOTABI }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          curl -i -X GET "${SUPABASE_URL}/rest/v1/" \
+            -H "apikey: ${SUPABASE_ANON_KEY_KOTABI}" \
+            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}"
